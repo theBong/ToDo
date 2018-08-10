@@ -44,3 +44,15 @@ class Todo():
 			res += (str(item) + ", ")
 
 		return res[:len(res)-2]
+
+	def itemAtIndex(self, index):
+
+		if index>len(self):
+			raise ValueError("Exceeds maximum index")
+		return self.items[index]
+
+	def addItems(self, itemlist):
+		if not isinstance(itemlist,list):
+			raise TypeError("Please pass a list of items.")
+
+		self.items.extend(itemlist)
