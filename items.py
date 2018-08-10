@@ -4,6 +4,9 @@ class Item():
 		if not (note or done):
 			raise ValueError("One or more arguments are missing")
 
+		if not isinstance(done, bool):
+			raise TypeError("Boolean argument expected for done")
+
 		self.note = note
 		self.done = done
 
@@ -56,3 +59,11 @@ class Todo():
 			raise TypeError("Please pass a list of items.")
 
 		self.items.extend(itemlist)
+
+	def delItem(self, item):
+
+		if item in self.items:
+			del self.items[self.items.index(item)]
+
+		else:
+			raise ValueError("No such value")
