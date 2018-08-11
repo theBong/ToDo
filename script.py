@@ -1,24 +1,45 @@
 from items import *
 
-a = Item(note = "a", done = True)
-b = Item(note = "b", done = False)
-c = Item(note = "c", done = False)
-b.updatedone(False)
-print(b.done)
+lis_of_items = {}
+lis_of_todo = {}
+
+while (True):
+	
+	inp = menu()
+
+	if inp == 1:
+
+		print(createItem())
+
+	elif inp == 2:
+
+		createTodo()
+
+	elif inp == 3:
 
 
-todd = Todo("Todd", [a,b])
+def createItem():
+	inpNote = ""
+	inpDone = bool()
+	inpID = ""
 
-print (todd.items[1].note)
+	item = Item(note = inpNote, done = inpDone)
 
-print (str(todd))
+	lis_of_items.update({ inpID : item })
 
-todd.addItems([c])
+	return "Created item number " + str(lis_of_items.index(item))
 
-print (str(todd))
+def createTodo():
 
-print (todd.items[2].note)
+	inpName
+	inpItemsIDs
+	inpID
+	thinglist = []
 
-todd.delItem(c)
+	for ID in inpItemsIDs:
+		thinglist.append(lis_of_items[ID])
 
-print (str(todd))
+
+	ToDo = Todo(name = inpName, things = thinglist )
+
+	lis_of_todo.update({ inpID : ToDo})
