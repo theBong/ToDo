@@ -30,11 +30,8 @@ def create_todo():
 
 
 while(True):
-	menu = '''
-		1: Create an Item
-		2: Create a ToDo
-		Other: Display list of items and ToDos
-	'''
+	menu = ('1. Create an Item\n2. Create a ToDo\nOther. Display list of' \
+		    'items and ToDos\n\n')
 	inp = int(input(menu))
 
 	if inp == 1:
