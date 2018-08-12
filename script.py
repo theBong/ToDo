@@ -11,7 +11,7 @@ def create_item():
 	item = Item(note=note, done=done)
 	lis_of_items.update({ id : item })
 
-	return "Created item with ID {}".format(str(id))
+	return "Created item with ID {}\n".format(str(id))
 
 
 def create_todo():
@@ -26,7 +26,7 @@ def create_todo():
 	todo = Todo(name=name, things=thing_list)
 	lis_of_todo.update({ id : todo})
 
-	return "Created with ID {}".format(str(id))
+	return "Created with ID {} \n".format(str(id))
 
 
 while(True):
@@ -46,4 +46,5 @@ while(True):
 			print("{}> {}".format(key, value))
 		print("\nList of TodoLists")
 		for key, value in lis_of_todo.items():
-			print("{} = {}".format(key, value))
+			print("{} = {} ".format(key, value))
+		print("")
