@@ -1,7 +1,20 @@
 from items import *
+from peewee import *
+db = SqliteDatabase('todo.db')
 
 lis_of_items = {}
 lis_of_todo = {}
+
+
+class note_entry(Model):
+	note = CharField(max_length = 100, unique = True)
+	done = IntegerField(default = 0)
+
+	class Meta:
+		database = db
+
+
+
 
 def create_item():
 	note = input("What is the note? \n")
@@ -28,6 +41,9 @@ def create_todo():
 
 	return "Created with ID {} \n".format(str(id))
 
+def save():
+
+
 
 while(True):
 	menu = ('1. Create an Item\n2. Create a ToDo\nOther. Display list of' \
@@ -40,6 +56,10 @@ while(True):
 	elif inp == 2:
 		print("")
 		print(create_todo())
+
+	elif inp == 3:
+		print("")
+		print(save())
 	else:
 		print("\nList of Items: ")
 		for key, value in lis_of_items.items():
