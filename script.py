@@ -6,13 +6,22 @@ lis_of_items = {}
 lis_of_todo = {}
 
 
-class note_entry(Model):
+class Entry(Model):
 	note = CharField(max_length = 100, unique = True)
 	done = IntegerField(default = 0)
 
 	class Meta:
 		database = db
 
+def save2db():
+	for item in lis_of_items:
+		try:
+			Entry.create(note = lis_of_items[item].note,
+								done = lis_of_items[item].done)
+		except IntegrityError:
+			entry = Entry.get(note = lis_of_items[item].note)
+			entry.done = int(lis_of_items[item].done)
+			entry.save()
 
 
 
@@ -41,12 +50,13 @@ def create_todo():
 
 	return "Created with ID {} \n".format(str(id))
 
-def save():
 
 
+db.connect()
+db.create_tables([Entry], safe = True)
 
 while(True):
-	menu = ('1. Create an Item\n2. Create a ToDo\nOther. Display list of' \
+	menu = ('1. Create an Item\n2. Create a ToDo\n3. save\nOther. Display list of' \
 		    'items and ToDos\n\n')
 	inp = int(input(menu))
 
@@ -59,7 +69,7 @@ while(True):
 
 	elif inp == 3:
 		print("")
-		print(save())
+		print(save2db())
 	else:
 		print("\nList of Items: ")
 		for key, value in lis_of_items.items():
